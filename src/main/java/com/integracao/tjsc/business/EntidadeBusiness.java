@@ -27,7 +27,7 @@ public class EntidadeBusiness {
         try {
             return getWs().getSeloServicePort().getEntesDeclaradosUtilidadePublicaEstadual().stream().map(e -> {
                 return new HashMap<String, Object>() {{
-                    put("id", e.getCdentepub());
+                    put("codigo", e.getCdentepub());
                     put("nome", e.getNomeEntidade());
                     put("lei", e.getLei());
                 }};
