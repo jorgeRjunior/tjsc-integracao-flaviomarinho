@@ -119,7 +119,7 @@ Retorno da requisição - Status: 200 OK
 - `Funcionalidade 6` `Testes unitários dos controllers da aplicação.`
 
 ```
-- `Os testes podem ser encontrados no respositório do projeto: src/test/java/com/integracao/tjsc/controllers`
+- Os testes podem ser encontrados no respositório do projeto: src/test/java/com/integracao/tjsc/controllers
 
 ```
 
@@ -128,8 +128,7 @@ Retorno da requisição - Status: 200 OK
 
 - `Faça o dowload do código fonte do projeto no repositório do github e depois descompacte.`
 - `Após baixar o projeto, você pode abri-lo com o InteliJ IDEA.`
-- `Na guia Run/Debug Configurations da IDE adicione uma nova configuração Maven, você deve dar um nome a ela e verificar se a referência do Java está correta.`
-- `Em paralelo você deve configurar uma instância do banco de dados MYSQL utilizando a ferramenta MYSQL Workbench.`
+- `Após abrir o projeto na IDE, você deve configurar uma instância local do banco de dados MYSQL.`
 - `Uma vez configurado o banco de dados, você deve rodar o seguinte script:`
 
 ```
@@ -143,17 +142,16 @@ CREATE TABLE entidade (
 );
 
 ```
-- `Na pasta resources do projeto você encontrará o arquivo application.properties ao qual você deve alterá-lo conforme a sua instância do banco de dados, essas informações você pode conferir no MYSQL Workbench.`
-- `Para esse projeto se fez necessário a utilização de SSL, assim no diretório resources você irá encontrar um certificado que gerei com o nome "flaviomarinho.p12". Você pode criá-lo com o seguinte comando:`
+- `Você deve editar o arquivo application.properties passando as informações de acesso ao banco de dados.`
+- `Nesse projeto foi necessário a utilização de SSL, para isso foi gerado um certificado digital que você pode visualizar no diretório resources "flaviomarinho.p12". Caso o mesmo tenha expirado, você pode recriá-lo com o seguinte comando:`
 - `Comando: keytool -genkeypair -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore flaviomarinho.p12 -validity 365`
-- `No arquivo application.properties você deve atualizar conforme a informação dos certificado que você gerou`.
-- `Nesse projeto também se fez necessário importar ao projeto um certificado digital do orgão TJSC, o mesmo pode ser encontrado e extraido a partir da url: https://selo.tjsc.jus.br/selo_teste/SeloService, após a extração você deve salvá-lo com a extenção .cer e colá-lo na pasta resources do projeto. Para importá-lo ao projeto execute o comando abaixo:`
+- `Uma vez gerado o certificado, você deve atualizar o arquivo application.properties com as informações do mesmo.
+- `Nesse projeto foi necessário importar um certificado digital do orgão TJSC, o mesmo pode ser encontrado e extraido a partir da url: https://selo.tjsc.jus.br/selo_teste/SeloService. Caso o mesmo expire você pode extraí-lo, salvá-lo com a extenção .cer e colá-lo na pasta resources do projeto. Para importá-lo ao projeto execute o comando abaixo:`
 - `Comando:     keytool -noprompt -importcert -file src/main/resources/tjsc.cer -keystore /home/vhl/.jdks/openjdk-19.0.2/lib/security/cacerts -storepass changeit -alias TJSC -storepass changeit`
 
  
-
-
 ```
+
 `application.properties`
 
 # SSL
@@ -187,6 +185,7 @@ spring.datasource.password=elisa
 - `SSL`
 - `Certificado`
 - `Postman`
+- `Teste unitário`
 
 
 ## Pessoa Desenvolvedora
