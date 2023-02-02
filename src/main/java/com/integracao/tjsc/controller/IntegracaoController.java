@@ -16,9 +16,9 @@ public class IntegracaoController {
     @Autowired
     EntidadeBusiness entidadeBusiness;
 
-    //Lista itens direto da integração
+    //Lista itens direto da integração para teste de comunicação
     @SneakyThrows
-    @GetMapping("/entidades")
+    @GetMapping("/teste-conexao")
     public ResponseEntity<?> getEntesDeclaradosUtilidadePublica(){
         return ResponseEntity.ok()
                 .body(entidadeBusiness.getEntidades());
@@ -28,7 +28,8 @@ public class IntegracaoController {
     @SneakyThrows
     @GetMapping("/salva-entidades")
     public ResponseEntity<?> salvaEntesDeclaradosUtilidadePublica(){
+        entidadeBusiness.salvarEntidades();
         return ResponseEntity.ok()
-                .body(entidadeBusiness.salvarEntesDeclaradosUtilidadePublica());
+                .body("Dados salvos no banco com sucesso!");
     }
 }

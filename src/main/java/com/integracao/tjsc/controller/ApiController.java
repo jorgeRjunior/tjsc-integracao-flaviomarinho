@@ -4,6 +4,7 @@ import com.integracao.tjsc.business.EntidadeBusiness;
 import com.integracao.tjsc.dao.EntidadeDao;
 import com.integracao.tjsc.dao.EntidadePaginatioRepository;
 import com.integracao.tjsc.model.Entidade;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -97,28 +98,12 @@ public class ApiController {
         }
     }
 
-
-    // Lista paginada geral
+    //Lista todos os itens
+    @SneakyThrows
     @GetMapping("/lista-todos")
-    public ResponseEntity<Map<String, Object>> paginationPorTodos(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "3") int size
-    ) {
-
-        try {
-            List<Entidade> entidades;
-            Pageable paging = PageRequest.of(page, size);
-            Page<Entidade>  pageTuts = entidadePaginatioRepository.findAll(paging);
-            entidades = pageTuts.getContent();
-            Map<String, Object> response = new HashMap<>();
-            response.put("entidades", entidades);
-            response.put("pagina atual", pageTuts.getNumber());
-            response.put("total itens", pageTuts.getTotalElements());
-            response.put("total paginas", pageTuts.getTotalPages());
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<?> listaTodasEntidades(){
+        return ResponseEntity.ok()
+                .body(entidadeBusiness.retornaLista());
     }
 
 }

@@ -7,8 +7,6 @@ import com.integracao.tjsc.service.SeloService_Service;
 import com.sun.xml.ws.client.ClientTransportException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -20,10 +18,11 @@ public class EntidadeBusiness {
     @Autowired
     EntidadeDao entidadeDao;
 
-    protected SeloService_Service getWs() throws MalformedURLException {
+    protected SeloService_Service getWs(){
         return new SeloService_Service();
     }
 
+    //Retorna lista direto do webservice
     public List getEntidades() throws Exception {
         try {
             return getWs().getSeloServicePort().getEntesDeclaradosUtilidadePublicaEstadual().stream().map(e -> {
@@ -39,7 +38,8 @@ public class EntidadeBusiness {
         }
     }
 
-    public List salvarEntesDeclaradosUtilidadePublica() throws Exception {
+    //Salva lista retornada do webservice no banco de dados
+    public List salvarEntidades() throws Exception {
         entidadeDao.delete();
         try {
             return getWs().getSeloServicePort().getEntesDeclaradosUtilidadePublicaEstadual().stream().map(e -> {
@@ -60,5 +60,9 @@ public class EntidadeBusiness {
         }
     }
 
+    //Retorna lista simples direto do banco
+    public List retornaLista(){
+        return entidadeDao.retornaLista();
+    }
 
 }
