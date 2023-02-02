@@ -61,7 +61,7 @@ public class EntidadeBusiness {
     }
 
     //Retorna lista simples direto do banco
-    public List retornaLista(){
+    public List<Entidade> retornaLista(){
         return entidadeDao.retornaLista();
     }
 

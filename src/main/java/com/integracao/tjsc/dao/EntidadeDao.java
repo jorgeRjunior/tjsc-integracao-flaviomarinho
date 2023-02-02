@@ -7,6 +7,6 @@ public interface EntidadeDao {
 
     public abstract void salvarEntidade(Entidade entidade);
     public abstract void delete();
-    public abstract List retornaLista();
+    public abstract List <Entidade> retornaLista();
 
 }
